@@ -9,3 +9,5 @@ gem("sinatra-activerecord")
 gem("rake")
 gem("launchy")
 gem("pry")
+gem "dotenv"
+gem "httparty"
