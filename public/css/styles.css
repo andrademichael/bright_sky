@@ -10,13 +10,24 @@ header, body, footer {
 
 .section-over-image {
   text-align: center !important;
+  padding-top: 25vh;
+  padding-bottom: 25vh;
 }
 
-.parallax-container {
-   max-height: 41.12vh;
- }
+.section-over-image h4 {
+  text-align: center;
+  padding-left: 15px;
+}
 
- body {
-   background: url('/img/big-sky.jpg');
-   background-size: cover;
- }
+input {
+  border-bottom: 4px #4db6ac solid !important;
+}
+
+body {
+ background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/big-sky.jpg');
+ background-size: cover;
+ background-position: bottom;
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+
+}

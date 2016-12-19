@@ -8,3 +8,7 @@ require('./lib/location.rb')
 get("/") do
   erb(:index)
 end
+
+get("/weather_view") do
+  erb(:weather_view)
+end
