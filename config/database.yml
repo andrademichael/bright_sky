@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: bright_sky_development
+
+test:
+  adapter: postgresql
+  database: bright_sky_test
