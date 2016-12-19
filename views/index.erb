@@ -1,13 +1,33 @@
-<div class="parallax-container">
-  <div class="parallax">
-    <img src="">
-  </div>
-</div>
 <div class="section section-over-image">
   <div class="row container">
     <h1 class="teal-text text-lighten-2">Hello There</h1>
+    <div class="row">
+      <form class="col s6 offset-s3" action="/weather_view" method="get">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="first_name" type="text" class="validate teal-text text-lighten-2">
+            <label for="first_name" class="teal-text text-lighten-2">Zipcode</label>
+          </div>
+        </div>
+        <div class="row">
+          <h4 class="teal-text text-lighten-2">OR</h4>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="city" type="text" class="validate teal-text text-lighten-2">
+            <label for="city" class="teal-text text-lighten-2">City</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="state" type="text" class="validate teal-text text-lighten-2">
+            <label for="state" class="teal-text text-lighten-2">State</label>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
   </div>
-</div>
-<div class="parallax-container">
-  <div class="parallax"><img src=""></div>
 </div>
