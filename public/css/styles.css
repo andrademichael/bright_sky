@@ -1,0 +1,22 @@
+header, body, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, body, footer {
+    padding-left: 0;
+  }
+}
+
+.section-over-image {
+  text-align: center !important;
+}
+
+.parallax-container {
+   max-height: 41.12vh;
+ }
+
+ body {
+   background: url('/img/big-sky.jpg');
+   background-size: cover;
+ }
