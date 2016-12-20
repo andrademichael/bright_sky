@@ -8,6 +8,6 @@ require 'pry'
 
 RSpec.configure do |config|
   config.after(:each) do
-    Location.all.each{ |location| location.destroy }
+    # Location.all.each{ |location| location.destroy }
   end
 end

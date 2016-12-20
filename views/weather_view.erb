@@ -1,3 +1,29 @@
-<div class="section section-over-image">
-<h4 class="teal-text text-lighten-2">Weather in <%= @city %>, <%= @state %></h4>
+<div class="section section-over-image teal-text text-lighten-2">
+  <div class="row">
+    <div class="col s12">
+      <h1>Weather in <%= @city %>, <%= @state %></h1>
+      <div class="row">
+        <div class="col s6">
+          <h3>Current Conditions</h3>
+          <div class="row">
+            <div class="col s6">
+              <h4><%= @summary %></h4>
+              <h4><%= @temp %> &deg;F</h4>
+              <h4><%= @high_temp %>&deg;/<%= @low_temp %>&deg;</h4>
+            </div>
+            <div class="col s6">
+              <h4>Feels like: <%= @feels_like %> &deg;F</h4>
+              <h4>Humidity: <%= @humidity %>%</h4>
+              <h4>Precipitation: <%= @chance_of_precip %>%</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s6">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
