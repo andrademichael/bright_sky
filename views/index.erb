@@ -2,10 +2,10 @@
   <div class="row container">
     <h1 class="teal-text text-lighten-2">Hello There</h1>
     <div class="row">
-      <form class="col s6 offset-s3" action="/weather_view" method="get">
+      <form id="search_form" class="col s6 offset-s3" action="/weather_view" method="get">
         <div class="row">
           <div class="input-field col s12">
-            <input id="zip_input" type="text" class="validate teal-text text-lighten-2">
+            <input id="zip_input" name="zip_input" type="text" class="teal-text text-lighten-2" maxlength="5" minlength="4">
             <label for="zip_input" class="teal-text text-lighten-2">Zipcode</label>
           </div>
         </div>
@@ -14,13 +14,13 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="city_input" type="text" class="validate teal-text text-lighten-2">
+            <input id="city_input" name="city_input" type="text" class="teal-text text-lighten-2">
             <label for="city_input" class="teal-text text-lighten-2">City</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="state_input" type="text" class="validate teal-text text-lighten-2">
+            <input id="state_input" name="state_input" type="text" class="teal-text text-lighten-2" minlength="2">
             <label for="state_input" class="teal-text text-lighten-2">State</label>
           </div>
         </div>
