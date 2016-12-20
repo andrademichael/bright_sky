@@ -22,9 +22,6 @@ get("/weather_view") do
   @day3 = (now+259200).strftime('%A')
   # --------------- GEOCODING API STUFF ---------------
   coordinates = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{city},+#{state},+#{zip}&key=#{ENV['GOOGLE_GEO_KEY']}")
-  if coordinates.fetch('status') == 'ZERO_RESULTS'
-    erb(:index)
-  else
     geolocation_result = coordinates.fetch('results')
     latitude = geolocation_result[0].fetch('geometry').fetch('location').fetch('lat').to_f
     longitude = geolocation_result[0].fetch('geometry').fetch('location').fetch('lng').to_f
@@ -45,6 +42,9 @@ get("/weather_view") do
     daily_data = weather_data.fetch('daily').fetch('data')
     @high_temp = daily_data[0].fetch('temperatureMax').round().to_i()
     @low_temp = daily_data[0].fetch('temperatureMin').round().to_i()
+    if coordinates.fetch('status') == 'ZERO_RESULTS'
+      erb(:index)
+    else
     erb(:weather_view)
   end
 end
