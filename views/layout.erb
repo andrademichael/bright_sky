@@ -24,10 +24,45 @@
       <h3 class="white-text">Locations</h3>
     </div></li>
     <div class="divider white"></div>
-    <li><a class="waves-effect white-text" href="#!">First</a></li>
-    <li><a class="waves-effect white-text" href="#!">Second</a></li>
-    <li><a class="waves-effect white-text" href="#!">Third</a></li>
-    <li class="teal lighten-1"><a class="waves-effect white-text" href="/locations/new">+ Add Location</a></li>
+    <% if @locations.any? %>
+      <% @locations.each do |location| %>
+        <a href="/weather/<%= location.id() %>"><li class="white-text"><%= location.city %>, <%= location.state %> </li></a>
+      <% end %>
+    <% else %>
+      <li>No Locations Yet!</li>
+    <% end %>
+    <!-- Dropdown with add form -->
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header white-text teal lighten-1">+ Add Location</a>
+          <div class="collapsible-body">
+            <ul>
+              <li>
+                <form id="add_location_form" class="col s12 teal lighten-1" action="/" method="post">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="city_add" name="city_add" type="text" class="white-text side-nav-input" placeholder="City">
+                      <label for="city_add"></label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="state_add" name="state_add" type="text" class="white-text side-nav-input" placeholder="State">
+                      <label for="state_add"></label>
+                    </div>
+                  </div>
+                  <div class="row no-margin">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Add</button>
+                  </div>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <!-- End dropdown -->
   </ul>
 
 </html>

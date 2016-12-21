@@ -22,3 +22,13 @@ describe("viewing current weather by city/state", {:type => :feature}) do
     expect(page).to have_content("Weather in Portland, OR")
   end
 end
+
+describe("adding a location to the database", {:type => :feature}) do
+  it("allows the user to save a location") do
+    visit("/")
+    fill_in("city_add", :with => 'Portland')
+    fill_in("state_add", :with => 'OR')
+    click_on("Add")
+    expect(page).to have_content("Portland, OR")
+  end
+end

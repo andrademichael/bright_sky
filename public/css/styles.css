@@ -30,3 +30,11 @@ body {
  background-repeat: no-repeat;
  background-attachment: fixed;
 }
+
+.side-nav-input {
+  border-bottom: 1px #fff solid !important;
+}
+
+.no-margin {
+  margin-bottom: 0px !important;
+}

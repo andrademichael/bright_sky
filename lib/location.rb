@@ -1,6 +1,5 @@
 class Location < ActiveRecord::Base
-  validates :name, presence: true
-  validates :name, uniqueness: true
-  validates :latitude, presence: true
-  validates :longitude, presence: true
+  validates :city, presence: true
+  validates :city, uniqueness: true
+  validates :state, presence: true
 end
