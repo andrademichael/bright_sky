@@ -2,6 +2,7 @@ require('sinatra/activerecord')
 require('sinatra')
 require('sinatra/reloader')
 require 'pg'
+require 'pry'
 also_reload('lib/**/*.rb')
 require('./lib/location.rb')
 require 'httparty'
@@ -88,7 +89,7 @@ post('/') do
   state = params[:state_add]
   @new_location = Location.create({city: city, state: state})
   @locations = Location.all()
-  redirect to "weather_view/#{@new_location.id()}"
+  redirect to "/weather_view/#{@new_location.id()}"
 end
 
 
@@ -158,4 +159,10 @@ get('/weather_view/:id') do
     erb(:weather_view)
 
   end
+end
+
+delete('/weather_view/:id') do
+  location = Location.find(params[:id].to_i)
+  location.destroy
+  redirect '/'
 end

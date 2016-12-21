@@ -43,3 +43,14 @@ describe("view weather for saved location", {:type => :feature}) do
     expect(page).to have_content("Weather in Portland, OR")
   end
 end
+
+describe("delete a saved location", {:type => :feature}) do
+  it("allows the user to delete a saved location") do
+    visit("/")
+    fill_in("city_add", :with => 'Portland')
+    fill_in("state_add", :with => 'OR')
+    click_on("Add")
+    find('#portland_delete').click
+    expect(page).to have_content("No Locations Yet!")
+  end
+end

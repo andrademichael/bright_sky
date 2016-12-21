@@ -26,27 +26,27 @@
         </div>
       </div>
     <li><div class="userView">
-      <h3 class="white-text">Locations</h3>
+      <h3 class="white-text center">Locations</h3>
     </div></li>
     <div class="divider white"></div>
     <br>
     <% if @locations.any? %>
       <% @locations.each do |location| %>
-      <form action="/delete/<%= @location.id %>" method="post">
+      <form action="/weather_view/<%= location.id %>" method="post">
         <a href="/weather_view/<%= location.id() %>"><li class="white-text"><%= location.city %>, <%= location.state %>
           <input name="_method" type="hidden" value="delete">
-          <button type="submit" class="btn right btn-center btn-flat">
+          <button type="submit" class="btn right btn-center btn-flat" id="<%= location.city.downcase %>_delete">
             <i class="material-icons red-text text-lighten-2">delete</i></button>
         </form></li></a>
       <% end %>
     <% else %>
-      <li>No Locations Yet!</li>
+      <li class="white-text center">No Locations Yet!</li>
     <% end %>
     <!-- Dropdown with add form -->
     <li class="no-padding">
       <ul class="collapsible collapsible-accordion">
         <li>
-          <a class="collapsible-header white-text teal lighten-1">+ Add Location</a>
+          <a class="collapsible-header white-text teal lighten-1 center">+ Add Location</a>
           <div class="collapsible-body">
             <ul>
               <li>
