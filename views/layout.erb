@@ -26,7 +26,7 @@
     <div class="divider white"></div>
     <% if @locations.any? %>
       <% @locations.each do |location| %>
-        <a href="/weather/<%= location.id() %>"><li class="white-text"><%= location.city %>, <%= location.state %> </li></a>
+        <a href="/weather_view/<%= location.id() %>"><li class="white-text"><%= location.city %>, <%= location.state %> </li></a>
       <% end %>
     <% else %>
       <li>No Locations Yet!</li>

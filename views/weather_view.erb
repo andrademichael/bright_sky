@@ -9,7 +9,7 @@
             <div class="col s6">
               <h4><%= @summary %></h4>
               <h4><%= @temp %> &deg;F</h4>
-              <h4><%= @high_temp %>&deg;/<%= @low_temp %>&deg;</h4>
+              <h4><span class="red-text text-lighten-2"><%= @high_temp %>&deg;</span>/<span class="blue-text text-lighten-2"><%= @low_temp %>&deg;</span></h4>
             </div>
             <div class="col s6">
               <h4>Feels like: <%= @feels_like %> &deg;F</h4>
