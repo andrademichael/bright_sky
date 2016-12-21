@@ -46,3 +46,7 @@ body {
   position: absolute !important;
   bottom: 5px !important;
 }
+
+.btn-center {
+  margin-top: 5px;
+}

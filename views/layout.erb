@@ -29,9 +29,15 @@
       <h3 class="white-text">Locations</h3>
     </div></li>
     <div class="divider white"></div>
+    <br>
     <% if @locations.any? %>
       <% @locations.each do |location| %>
-        <a href="/weather_view/<%= location.id() %>"><li class="white-text"><%= location.city %>, <%= location.state %> </li></a>
+      <form action="/delete/<%= @location.id %>" method="post">
+        <a href="/weather_view/<%= location.id() %>"><li class="white-text"><%= location.city %>, <%= location.state %>
+          <input name="_method" type="hidden" value="delete">
+          <button type="submit" class="btn right btn-center btn-flat">
+            <i class="material-icons red-text text-lighten-2">delete</i></button>
+        </form></li></a>
       <% end %>
     <% else %>
       <li>No Locations Yet!</li>
