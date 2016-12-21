@@ -23,12 +23,15 @@ get("/weather_view") do
   @day3 = (now+259200).strftime('%A')
   # ================= GEOCODING API STUFF =================
   coordinates = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{city},+#{state},+#{zip}&key=AIzaSyCejelLSq4O3hVxn7KUui2dpcc-_81XVM8")
+
   # --------------- invalid input branch ---------------------
+
   if coordinates.fetch('status') == 'ZERO_RESULTS'
     @locations = Location.all()
     erb(:index)
 
   # ---------------- valid input branch ---------------------
+
   else
     geolocation_result = coordinates.fetch('results')
     latitude = geolocation_result[0].fetch('geometry').fetch('location').fetch('lat').to_f
@@ -44,6 +47,7 @@ get("/weather_view") do
     weather_data = HTTParty.get("https://api.darksky.net/forecast/de6e497d48c4d73de9049c55b3c7fc90/#{latitude},#{longitude}")
 
     # ------------- current weather -------------
+
     @summary = weather_data.fetch('currently').fetch('summary')
     @temp = weather_data.fetch('currently').fetch('temperature').round().to_i()
     @feels_like = weather_data.fetch('currently').fetch('apparentTemperature').round().to_i()
@@ -82,9 +86,9 @@ end
 post('/') do
   city = params[:city_add]
   state = params[:state_add]
-  Location.create({city: city, state: state})
+  @new_location = Location.create({city: city, state: state})
   @locations = Location.all()
-  erb(:index)
+  redirect to "weather_view/#{@new_location.id()}"
 end
 
 
@@ -98,9 +102,16 @@ get('/weather_view/:id') do
   @day2 = (now+172800).strftime('%A')
   @day3 = (now+259200).strftime('%A')
   # --------------- GEOCODING API STUFF ---------------
-  coordinates = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{city},+#{state}&key=#{ENV['GOOGLE_GEO_KEY']}")
+  coordinates = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{city},+#{state}&key=AIzaSyCejelLSq4O3hVxn7KUui2dpcc-_81XVM8")
+
+  # --------------- invalid input branch ---------------------
+
   if coordinates.fetch('status') == 'ZERO_RESULTS'
+    @locations = Location.all()
     erb(:index)
+
+    # ---------------- valid input branch ---------------------
+
   else
     geolocation_result = coordinates.fetch('results')
     latitude = geolocation_result[0].fetch('geometry').fetch('location').fetch('lat').to_f
@@ -109,6 +120,9 @@ get('/weather_view/:id') do
     @state = geolocation_result[0].fetch('address_components')[2].fetch('short_name')
     # --------------- DARK SKY API STUFF --------------
     weather_data = HTTParty.get("https://api.darksky.net/forecast/de6e497d48c4d73de9049c55b3c7fc90/#{latitude},#{longitude}")
+
+    # ------------- current weather -------------
+
     @summary = weather_data.fetch('currently').fetch('summary')
     @temp = weather_data.fetch('currently').fetch('temperature').round().to_i()
     @feels_like = weather_data.fetch('currently').fetch('apparentTemperature').round().to_i()
@@ -117,6 +131,31 @@ get('/weather_view/:id') do
     daily_data = weather_data.fetch('daily').fetch('data')
     @high_temp = daily_data[0].fetch('temperatureMax').round().to_i()
     @low_temp = daily_data[0].fetch('temperatureMin').round().to_i()
+
+    # --------------- 3-day forecast -----------------
+
+    daily_data = weather_data.fetch('daily')
+    week_summary = daily_data.fetch('summary')
+    days_array = daily_data.fetch('data')
+    tomorrow = days_array[1]
+    @day1_summary = tomorrow.fetch("summary")
+    @day1_precip = tomorrow.fetch("precipProbability").to_f * 100.round
+    @day1_min = tomorrow.fetch("temperatureMin").round().to_i()
+    @day1_max = tomorrow.fetch("temperatureMax").round().to_i()
+    day_after_tomorrow = days_array[2]
+    @day2_summary = day_after_tomorrow.fetch("summary")
+    @day2_precip = day_after_tomorrow.fetch("precipProbability").to_f * 100.round
+    @day2_min = day_after_tomorrow.fetch("temperatureMin").round().to_i()
+    @day2_max = day_after_tomorrow.fetch("temperatureMax").round().to_i()
+    third_day = days_array[3]
+    @day3_summary = third_day.fetch("summary")
+    @day3_precip = third_day.fetch("precipProbability").to_f * 100.round
+    @day3_min = third_day.fetch("temperatureMin").round().to_i()
+    @day3_max = third_day.fetch("temperatureMax").round().to_i()
+
+    # ============= populate locations array and get view =============
+    @locations = Location.all()
     erb(:weather_view)
+
   end
 end

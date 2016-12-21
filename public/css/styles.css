@@ -38,3 +38,11 @@ body {
 .no-margin {
   margin-bottom: 0px !important;
 }
+
+#bottom_row {
+  position: relative;
+}
+#home_button {
+  position: absolute !important;
+  bottom: 5px !important;
+}
