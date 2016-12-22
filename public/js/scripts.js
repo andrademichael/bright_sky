@@ -3,6 +3,7 @@ $(document).ready(function(){
     dismissible: true,
   });
   $('.button-collapse').sideNav({
+    closeOnClick: true,
     draggable: true,
   });
   $('#search_form').submit(function(event) {
