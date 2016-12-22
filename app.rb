@@ -108,7 +108,7 @@ get('/weather_view/:id') do
   @day2 = (now+172800).strftime('%A')
   @day3 = (now+259200).strftime('%A')
   # --------------- GEOCODING API STUFF ---------------
-  coordinates = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{city},+#{state}&key=AIzaSyCejelLSq4O3hVxn7KUui2dpcc-_81XVM8")
+  coordinates = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{city},+#{state}&key=#{ENV['GOOGLE_GEOCODE_KEY']}")
 
   # --------------- invalid input branch ---------------------
 
@@ -125,7 +125,7 @@ get('/weather_view/:id') do
     @city = geolocation_result[0].fetch('address_components')[0].fetch('long_name')
     @state = geolocation_result[0].fetch('address_components')[2].fetch('short_name')
     # --------------- DARK SKY API STUFF --------------
-    weather_data = HTTParty.get("https://api.darksky.net/forecast/de6e497d48c4d73de9049c55b3c7fc90/#{latitude},#{longitude}")
+    weather_data = HTTParty.get("https://api.darksky.net/forecast/#{ENV['DARK_SKY_KEY']}/#{latitude},#{longitude}")
 
     # ------------- current weather -------------
 
