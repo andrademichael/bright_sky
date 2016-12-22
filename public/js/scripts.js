@@ -2,7 +2,9 @@ $(document).ready(function(){
   $('.modal').modal({
     dismissible: true,
   });
-  $('.button-collapse').sideNav('show');
+  $('.button-collapse').sideNav({
+    draggable: true,
+  });
   $('#search_form').submit(function(event) {
     if ($('#zip_input').val() === '') {
       if ($('#city_input').val() === '' && $('#state_input').val() === '') {

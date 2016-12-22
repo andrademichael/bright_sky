@@ -10,7 +10,7 @@ header, body, footer {
 
 .section-over-image {
   text-align: center !important;
-  padding-top: 10vh;
+  padding-top: 0px;
   padding-bottom: 10vh;
 }
 
@@ -53,4 +53,14 @@ body {
 
 .top-row {
   border-bottom: 2px #4db6ac solid;
+}
+
+.alerts-button {
+  background-color: rgba(250, 250, 250, 0.2);
+}
+
+@media (max-width : 601px) {
+  .days_ahead_columns {
+    border-bottom: 2px #4db6ac solid;
+  }
 }
