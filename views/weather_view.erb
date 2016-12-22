@@ -2,12 +2,13 @@
 
   <!-- Top Row, current conditions -->
 
-  <div class="row">
+  <div class="row top-row">
     <div class="col s12">
       <h1>Weather in <%= @city %>, <%= @state %></h1>
+      <button class="waves-effect waves-light btn" data-target="modal1">Weather Alerts</button><br>
       <div class="row">
         <div class="col s12">
-          <h3>Current Conditions</h3>
+          <h2 class="blue-grey-text text-lighten-3">Current Conditions</h2>
           <div class="row">
             <div class="col s6">
               <h4><%= @summary %></h4>
@@ -26,7 +27,7 @@
   </div>
   <div class="row">
     <div class="col s12">
-      <h2 class="grey-text">3-Day Outlook</h2>
+      <h2 class="blue-grey-text text-lighten-3">3-Day Outlook</h2>
       <div class="row">
         <div class="col l4">
           <h3><%= @day1 %></h3>
@@ -48,5 +49,18 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<!-- Modal -->
+<div id="modal1" class="modal bottom-sheet">
+  <div class="modal-content">
+    <% if @alerts.any? %>
+      <% @alerts.each do |alert| %>
+        <h4 class='teal-text text-darken-2'><%= alert.fetch('title') %></h4>
+        <p class='teal-text text-darken-2'><%= alert.fetch('description') %></p>
+      <% end %>
+    <% else %>
+      <h4 class='teal-text text-darken-2'>No Current Weather Alerts</h4>
+    <% end %>
   </div>
 </div>

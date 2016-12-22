@@ -1,5 +1,7 @@
 $(document).ready(function(){
-  $('.parallax').parallax();
+  $('.modal').modal({
+    dismissible: true,
+  });
   $('#search_form').submit(function(event) {
     if ($('#zip_input').val() === '') {
       if ($('#city_input').val() === '' && $('#state_input').val() === '') {

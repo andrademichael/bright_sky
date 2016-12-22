@@ -132,6 +132,11 @@ get('/weather_view/:id') do
     daily_data = weather_data.fetch('daily').fetch('data')
     @high_temp = daily_data[0].fetch('temperatureMax').round().to_i()
     @low_temp = daily_data[0].fetch('temperatureMin').round().to_i()
+    if weather_data.include?('alerts')
+      @alerts = weather_data.fetch('alerts')
+    else
+      @alerts = []
+    end
 
     # --------------- 3-day forecast -----------------
 
