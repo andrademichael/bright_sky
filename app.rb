@@ -69,17 +69,17 @@ get("/weather_view") do
     days_array = daily_data.fetch('data')
     tomorrow = days_array[1]
     @day1_summary = tomorrow.fetch("summary")
-    @day1_precip = tomorrow.fetch("precipProbability").to_f * 100.round
+    @day1_precip = (tomorrow.fetch("precipProbability") * 100).round
     @day1_min = tomorrow.fetch("temperatureMin").round().to_i()
     @day1_max = tomorrow.fetch("temperatureMax").round().to_i()
     day_after_tomorrow = days_array[2]
     @day2_summary = day_after_tomorrow.fetch("summary")
-    @day2_precip = day_after_tomorrow.fetch("precipProbability").to_f * 100.round
+    @day2_precip = (day_after_tomorrow.fetch("precipProbability") * 100).round
     @day2_min = day_after_tomorrow.fetch("temperatureMin").round().to_i()
     @day2_max = day_after_tomorrow.fetch("temperatureMax").round().to_i()
     third_day = days_array[3]
     @day3_summary = third_day.fetch("summary")
-    @day3_precip = third_day.fetch("precipProbability").to_f * 100.round
+    @day3_precip = (third_day.fetch("precipProbability") * 100).round
     @day3_min = third_day.fetch("temperatureMin").round().to_i()
     @day3_max = third_day.fetch("temperatureMax").round().to_i()
 
@@ -132,8 +132,8 @@ get('/weather_view/:id') do
     @summary = weather_data.fetch('currently').fetch('summary')
     @temp = weather_data.fetch('currently').fetch('temperature').round().to_i()
     @feels_like = weather_data.fetch('currently').fetch('apparentTemperature').round().to_i()
-    @humidity = (weather_data.fetch('currently').fetch('humidity').to_f * 100).round()
-    @chance_of_precip = weather_data.fetch('currently').fetch('precipProbability').to_i * 100
+    @humidity = (weather_data.fetch('currently').fetch('humidity') * 100).round()
+    @chance_of_precip = weather_data.fetch('currently').fetch('precipProbability') * 100
     daily_data = weather_data.fetch('daily').fetch('data')
     @high_temp = daily_data[0].fetch('temperatureMax').round().to_i()
     @low_temp = daily_data[0].fetch('temperatureMin').round().to_i()
@@ -150,17 +150,17 @@ get('/weather_view/:id') do
     days_array = daily_data.fetch('data')
     tomorrow = days_array[1]
     @day1_summary = tomorrow.fetch("summary")
-    @day1_precip = tomorrow.fetch("precipProbability").to_f * 100.round
+    @day1_precip = (tomorrow.fetch("precipProbability") * 100).round
     @day1_min = tomorrow.fetch("temperatureMin").round().to_i()
     @day1_max = tomorrow.fetch("temperatureMax").round().to_i()
     day_after_tomorrow = days_array[2]
     @day2_summary = day_after_tomorrow.fetch("summary")
-    @day2_precip = day_after_tomorrow.fetch("precipProbability").to_f * 100.round
+    @day2_precip = (day_after_tomorrow.fetch("precipProbability") * 100).round
     @day2_min = day_after_tomorrow.fetch("temperatureMin").round().to_i()
     @day2_max = day_after_tomorrow.fetch("temperatureMax").round().to_i()
     third_day = days_array[3]
     @day3_summary = third_day.fetch("summary")
-    @day3_precip = third_day.fetch("precipProbability").to_f * 100.round
+    @day3_precip = (third_day.fetch("precipProbability") * 100).round
     @day3_min = third_day.fetch("temperatureMin").round().to_i()
     @day3_max = third_day.fetch("temperatureMax").round().to_i()
 
