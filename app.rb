@@ -3,7 +3,6 @@ require('sinatra')
 require('sinatra/reloader')
 require 'pg'
 require 'pry'
-require './config/environment.rb'
 also_reload('lib/**/*.rb')
 require('./lib/location.rb')
 require 'httparty'
