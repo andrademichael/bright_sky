@@ -92,9 +92,19 @@ end
 post('/') do
   city = params[:city_add]
   state = params[:state_add]
-  @new_location = Location.create({city: city, state: state})
-  @locations = Location.all()
-  redirect to "/weather_view/#{@new_location.id()}"
+  coordinates = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{city},+#{state}&key=#{ENV['GOOGLE_GEOCODE_KEY']}")
+
+  # --------------- invalid input branch ---------------------
+
+  if coordinates.fetch('status') == 'ZERO_RESULTS'
+    @locations = Location.all()
+    erb(:index)
+  # --------------- Valid Branch ---------------
+  else
+    @new_location = Location.create({city: city, state: state})
+    @locations = Location.all()
+    redirect to "/weather_view/#{@new_location.id()}"
+  end
 end
 
 
