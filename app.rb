@@ -39,7 +39,11 @@ get("/weather_view") do
     longitude = geolocation_result[0].fetch('geometry').fetch('location').fetch('lng').to_f
     if city == '' && state == ''
       @city = geolocation_result[0].fetch('address_components')[1].fetch('long_name')
-      @state = geolocation_result[0].fetch('address_components')[3].fetch('short_name')
+      if geolocation_result[0].fetch('address_components')[3] != nil
+        @state = geolocation_result[0].fetch('address_components')[3].fetch('short_name')
+      else
+        @state = geolocation_result[0].fetch('address_components')[2].fetch('short_name')
+      end
     else
       @city = geolocation_result[0].fetch('address_components')[0].fetch('long_name')
       @state = geolocation_result[0].fetch('address_components')[2].fetch('short_name')
