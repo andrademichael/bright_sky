@@ -29,7 +29,7 @@
     <% if @locations.any? %>
       <% @locations.each do |location| %>
       <form action="/weather_view/<%= location.id %>" method="post">
-        <a href="/weather_view/<%= location.id() %>"><li class="white-text"><%= location.city %>, <%= location.state %>
+        <a href="/weather_view/<%= location.id() %>"><li class="white-text"><%= location.city.titlecase %>, <%= location.state.upcase %>
           <input name="_method" type="hidden" value="delete">
           <button type="submit" class="btn right btn-center btn-flat" id="<%= location.city.downcase %>_delete">
             <i class="material-icons red-text text-lighten-2">delete</i></button>
@@ -55,7 +55,7 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="state_add" name="state_add" type="text" class="white-text side-nav-input" placeholder="State">
+                      <input id="state_add" name="state_add" type="text" class="white-text side-nav-input" placeholder="State" maxlength="2">
                       <label for="state_add"></label>
                     </div>
                   </div>
